@@ -6,6 +6,7 @@ const mascotasRoutes = require('./routes/mascotas');
 const serviciosRoutes = require('./routes/Servicios');
 const serviciosArchivados = require('./routes/Servicios');
 const authRoutes = require('./routes/auth');
+const rootRoute = require('./routes/root'); // Importar la ruta raíz
 const cors = require('cors');
 const { Mascotas, Servicios, Jaulas, Personal } = require('./models/index');
 
@@ -19,17 +20,13 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' })); // Aumenta el límite si las firmas son grandes
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+app.use('/', rootRoute); // Usa la ruta raíz desde el archivo modularizado
 app.use('/api/jaulas', jaulasRoutes);
 app.use('/api/personal', personalRoutes);
 app.use('/api/mascotas', mascotasRoutes);
 app.use('/api/servicios', serviciosRoutes);
 app.use('/api/archivados', serviciosArchivados);
 app.use('/api/auth', authRoutes.router);
-
-// Ruta raíz para la API
-app.get('/', (req, res) => {
-    res.send('Bienvenido a la API de grooming. Usa las rutas en /api para interactuar con el sistema.');
-});
 
 // Manejo de rutas no encontradas
 app.use((req, res) => {
