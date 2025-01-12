@@ -28,10 +28,5 @@ app.use('/api/servicios', serviciosRoutes);
 app.use('/api/archivados', serviciosArchivados);
 app.use('/api/auth', authRoutes.router);
 
-// Manejo de rutas no encontradas
-app.use((req, res) => {
-    res.status(404).json({ error: 'Ruta no encontrada' });
-});
-
 // Exportar la aplicación en lugar de iniciar el servidor
 module.exports = app;
