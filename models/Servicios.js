@@ -22,7 +22,7 @@ const Servicios = sequelize.define('Servicios', {
         defaultValue: false,
     },
     metodo_pago: {
-        type: DataTypes.ENUM('efectivo', 'tarjeta'),
+        type: DataTypes.ENUM('efectivo', 'tarjeta', 'transferencia'),
         allowNull: false,
     },
     pulgas: {
